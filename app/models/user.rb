@@ -4,8 +4,10 @@ class User
   include ActiveModel::Conversion
   include ActiveModel::Naming
   include ActiveModel::Validations
+  include ActiveModel::Validations::Callbacks
 
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+  # TODO: support all modules
+  devise :database_authenticatable, :registerable, :rememberable, :trackable#, :validatable, :recoverable
 
   attr_accessor :id, :created_at, :updated_at
   attr_accessor :email, :encrypted_password # Database authenticatable
