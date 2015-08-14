@@ -13,6 +13,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise', path: '../../mine/devise'
 gem 'curator', path: '../../mine/curator'
+gem 'orm_adapter', path: '../../mine/orm_adapter'
 
 group :development, :test do
   gem 'byebug'
