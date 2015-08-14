@@ -16,4 +16,29 @@ class User
   attr_accessor :sign_in_count, :current_sign_in_at, :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip # Trackable
   attr_accessor :confirmation_token, :confirmed_at, :confirmation_sent_at, :unconfirmed_email # Confirmable
   attr_accessor :failed_attempts, :unlock_token, :locked_at # Lockable
+
+  #####################################################
+  # polyfill for Devise::RegistrationsController#create
+  #####################################################
+  def save(options={})
+    validate = options.has_key?(:validate) ? options[:validate] : true
+
+    if validate && !valid?
+      return false
+    end
+
+    UserRepository.save(self)
+  end
+
+  #####################################################################
+  # polyfill for Devise::Authenticatable#apply_to_attribute_or_variable
+  #####################################################################
+  def [](name)
+    instance_variable_get "@#{name}"
+  end
+
+  def []=(name, value)
+    instance_variable_set "@#{name}", value
+  end
+
 end
