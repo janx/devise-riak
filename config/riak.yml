@@ -1,0 +1,6 @@
+development:
+  :pb_port: 10017
+  :host: localhost
+test:
+  :pb_port: 10017
+  :host: localhost
